@@ -26,7 +26,7 @@ if (!isset($content_width)) {
 }
 
 if (function_exists('add_theme_support')) {
-    add_image_size( 'loop-thumb', 350, 350, true);
+    add_image_size( 'loop-thumb', 250, 250, array('center', 'center'));
 
     // Add Thumbnail Theme Support
     add_theme_support('post-thumbnails');
@@ -35,7 +35,7 @@ if (function_exists('add_theme_support')) {
     add_theme_support('automatic-feed-links');
 
     // Enable mind support
-    add_theme_support('mind', array('comment-list', 'comment-form', 'search-form', 'gallery', 'caption'));
+    add_theme_support('mind', array('search-form', 'gallery', 'caption'));
 
     // Localisation Support
     load_theme_textdomain('mindblank', get_template_directory() . '/languages');

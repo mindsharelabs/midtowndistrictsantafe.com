@@ -1,8 +1,8 @@
 <?php get_header();?>
 
 <main role="main" aria-label="Content">
-  <section <?php post_class('container'); ?>>
-    <div class="row">
+  <section <?php post_class('container blog'); ?>>
+    <div class="row mt-5">
       <?php
       echo '<div class="col-12 col-md-3 page-title">';
         echo '<h1 class="page-title">' . single_cat_title('', false) . '</h1>';

@@ -29,6 +29,10 @@ body.fade-in {
 img {
   max-width: 100%;
   height: auto;
+  &.blackandwhite {
+    filter: gray;
+    filter: grayscale(100%);
+  }
 }
 h1, h2, h3, h4, h5, h6 {
   font-family: 'Oswald', sans-serif;
@@ -419,7 +423,7 @@ header.blog-header {
   background-position: center;
   background-blend-mode: luminosity;
 }
-article.page.type-page, article.post.type-post.single, section.documents {
+article.page.type-page, article.post.type-post.single, section.documents, section.blog {
   border-top: 20px solid $danger;
   margin-top: 15px;
 }
@@ -438,6 +442,7 @@ article.post.type-post {
     line-height: 22px;
     background-position: right bottom;
     background-repeat: no-repeat;
+    background-color: $info;
     background-size: 200px;
     background-image: url('../img/element.png');
     position: relative;
@@ -453,7 +458,33 @@ article.post.type-post {
       background: $light;
     }
   }
+  span.posted-date {
+    font-size: .9em;
+    margin: 4px 0;
+    font-weight: bold;
+    text-transform: uppercase;
+  }
+  &.archived {
+    opacity: .7;
+    @include transition(500ms);
+    .card-content {
+      background-color: $gray-400;
+      .blog-button {
+        color: $gray-900;
+      }
+      &:after {
+        border-color: $gray-800;
+      }
+    }
+    &:hover {
+      opacity: 1;
+      @include transition(100ms);
+    }
+  }
 }
+
+
+
 section.brand, section.archive-header {
   background-size: cover;
   position: relative;
@@ -479,30 +510,17 @@ section.post, section.blog {
     text-transform: uppercase;
     font-weight: bold;
     line-height: 1.6em;
-  }
-}
-article {
-  span.posted-date {
-    font-size: .9em;
-    margin: 4px 0;
-    font-weight: bold;
-    text-transform: uppercase;
-  }
-  span.author-name {
-    font-size: .8em;
-    margin: 4px 0;
-    display: block;
-  }
-  &.sticky {
-    .card-body {
-      border-top: 8px solid $secondary;
+    a {
+      line-height: 1.1em;
+      display: block;
+      margin-bottom: 10px;
     }
-
-  }
-  .categories {
-    line-height: 1.1em;
+    br {
+      display: none;
+    }
   }
 }
+
 a.view-article {
   display: none;
 }

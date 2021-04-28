@@ -20,7 +20,6 @@
     </div>
 
     <div class="row text-center">
-
       <?php echo facetwp_display( 'facet', 'document_pagination' ); ?>
     </div>
 
