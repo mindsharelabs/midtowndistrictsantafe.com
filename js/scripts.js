@@ -15,6 +15,14 @@
 					var menuWidth = 400;
 				}
 
+				$(document).on('click', 'a[href^="#"]', function (event) {
+			    event.preventDefault();
+
+			    $('html, body').animate({
+			      scrollTop: $($.attr(this, 'href')).offset().top
+			    }, 500);
+				});
+
 
 				var lang = $.cookie("googtrans"); //console.log(lang);
 				if(lang == '/en/en' || lang == "" || lang == undefined) {
@@ -61,6 +69,11 @@
 					$(this).toggleClass('expanded');
 				})
 
+
+
+				gform.addFilter( 'gform_spinner_target_elem', function( $targetElem, formId ) {
+				    return $( '#my-custom-footer-elem' );
+				} );
 
         jQuery('body').addClass('fade-in');
 

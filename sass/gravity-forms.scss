@@ -94,6 +94,12 @@ body .gform_wrapper ul.gform_fields li.gfield.gform_validation_container {
         .ginput_container_phone {
           input, textarea {
             @extend .form-control;
+            &.large {
+              @extend .form-control-lg;
+            }
+            &.small {
+              @extend .form-control-sm;
+            }
           }
         }
 
@@ -203,6 +209,7 @@ body .gform_wrapper ul.gform_fields li.gfield.gform_validation_container {
 
     }
   }
+
   .gform_footer {
     text-align: center;
     float: left;

@@ -1,5 +1,5 @@
 wp.domReady( () => {
-  console.log('working');
+  // console.log('working');
 	wp.blocks.unregisterBlockType( 'core/social-links' );
 	wp.blocks.unregisterBlockType( 'core/core/latest-comments' );
 	wp.blocks.unregisterBlockType( 'core/more' );

@@ -75,7 +75,10 @@ add_action( 'enqueue_block_editor_assets', 'be_gutenberg_scripts' );
  //
 
 
-
+ add_filter( 'gform_submit_button', 'form_submit_button', 10, 2 );
+ function form_submit_button( $button, $form ) {
+     return '<button class="btn btn-primary btm-lg mt-2 px-4 py-2 fs-5" id="gform_submit_button_' . $form['id'] . '"><span class="pe-3">' . $form["button"]["text"] . '</span><i class="fas fa-angle-double-right"></i></button>';
+ }
 
 add_filter("gform_field_content", "bootstrap_styles_for_gravityforms_fields", 10, 5);
 function bootstrap_styles_for_gravityforms_fields($content, $field, $value, $lead_id, $form_id){
