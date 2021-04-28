@@ -80,6 +80,12 @@ h2 {
       color: $light;
     }
   }
+  &.document-title {
+    font-family: 'Open Sans', sans-serif;
+    font-size: 22px;
+    text-transform: unset;
+    line-height: 26px;
+  }
 }
 h3 {
   font-size: 38px;
@@ -413,7 +419,7 @@ header.blog-header {
   background-position: center;
   background-blend-mode: luminosity;
 }
-article.page.type-page, article.post.type-post.single {
+article.page.type-page, article.post.type-post.single, section.documents {
   border-top: 20px solid $danger;
   margin-top: 15px;
 }

@@ -28,31 +28,6 @@ function mind_format_phone($phoneNumber) {
 }
 
 
-add_filter( 'render_block', 'mapi_block_wrapper', 10, 2 );
-function mapi_block_wrapper( $block_content, $block ) {
-  $addWrapper = array(
-    'core/cover',
-    // // 'core/button',
-    // 'acf/leep-full-width-notice',
-    // 'acf/container'
-  );
-  mapi_write_log($block['blockName']);
-  if(in_array($block['blockName'], $addWrapper)) :
-      $content .= '</div>';
-    $content .= '</div>';
-  $content .= '</div>';
-    $content .= $block_content;
-  $content = '<div class="container">';
-    $content .= '<div class="row">';
-      $content .= '<div class="col-12">';
-
-
-  else :
-    return $block_content;
-  endif;
-  return $content;
-
-}
 
 
 
@@ -80,7 +55,7 @@ add_action( 'enqueue_block_editor_assets', 'be_gutenberg_scripts' );
  * @return string Modified field content
  */
 
- // 
+ //
  // /*======================================================================
  // 	Gravity form custom button
  // ----------------------------------------------------------------------*/

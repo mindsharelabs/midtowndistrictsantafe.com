@@ -1,0 +1,12 @@
+.facetwp-facet {
+  button.facetwp-load-more {
+    background: 0;
+    border: 0;
+    font-size: 1.1em;
+    font-weight: bold;
+    color: $primary;
+    &:focus {
+      outline: none;
+    }
+  }
+}
