@@ -11,6 +11,12 @@ get_header();
         if(have_posts()) :
           echo '<div class="col-12 col-md-3 page-title">';
             echo '<h1 class="page-title">' . get_the_title(get_option('page_for_posts', true)) . '</h1>';
+            echo '<div class="cat-list">';
+              wp_list_categories(array(
+                'title_li' => '',
+                'style' => ''
+              ));
+            echo '</div>';
           echo '</div>';
           echo '<div class="col-12 col-md-9">';
             while(have_posts()) : the_post();

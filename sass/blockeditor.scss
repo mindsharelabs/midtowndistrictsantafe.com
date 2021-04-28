@@ -1,7 +1,20 @@
 $primary:       #2BB673;
 $secondary:     #00A496;
 $dark:          #2B2B2B;
-
+.wp-block-media-text {
+  &.has-media-on-the-right {
+    .wp-block-media-text__content {
+      padding-left: 0;
+      padding-right: 15px;
+    }
+  }
+  &.has-media-on-the-left {
+    .wp-block-media-text__content {
+      padding-left: 15px;
+      padding-right: 0;
+    }
+  }
+}
 .wp-block-cover {
   max-height: 100vh;
   &.alignleft {

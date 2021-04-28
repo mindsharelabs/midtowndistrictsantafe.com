@@ -15,8 +15,8 @@ if ( is_front_page() && is_home() ) :
   $headline = get_field('headline');
 elseif ( is_front_page()) :
   // Static homepage
-  $title = get_bloginfo('name');
-  $headline = get_field('headline');
+  $title = false;
+  $headline = false;
 elseif ( is_home()) :
   // Blog page
   $title = get_the_title( get_option( 'page_for_posts' ) );
@@ -30,7 +30,7 @@ else :
   $headline = get_field('headline');
 endif;
 
-
+if($title || $headline) :
 echo '<section class="brand" ' . ($f_image ? 'style="background-image:url(' . $f_image . ');"' : '') . '>';
   echo '<div class="container py-5">';
     echo '<div class="row">';
@@ -50,3 +50,4 @@ echo '<section class="brand" ' . ($f_image ? 'style="background-image:url(' . $f
     echo '</div>';
   echo '</div>';
 echo '</section>';
+endif;
