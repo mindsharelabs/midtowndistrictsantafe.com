@@ -7,9 +7,9 @@
 
 body {
   opacity: 0;
-  font-family: ronnia, sans-serif;
+  font-family: 'Open Sans', sans-serif;
   font-weight: 300;
-  font-size: 20px;
+  font-size: 16px;
   color: $dark;
   -moz-osx-font-smoothing: grayscale; // enable font-smoothing for browsers that support it
   -webkit-font-smoothing: antialiased;
@@ -30,14 +30,14 @@ img {
   height: auto;
 }
 h1, h2, h3, h4, h5, h6 {
-  font-family: ronnia, sans-serif;
-  font-weight: 200;
+  font-family: 'Oswald', sans-serif;
+  font-weight: 600;
   color: $primary;
   &.page-title {
     font-weight: 800;
   }
   &.sub-title {
-    font-weight: 400;
+    font-weight: 600;
   }
 }
 strong {
@@ -58,10 +58,24 @@ p + h4 {
 }
 h1 {
   margin-bottom: 12px;
+  &.page-title {
+    text-transform: uppercase;
+    font-weight: 700;
+    font-size: 46px;
+    line-height: 46px;
+  }
 }
 h2 {
   font-size: 1.8em;
   margin-bottom: 9px;
+  &.blog-title {
+    text-transform: uppercase;
+    color: $light;
+    font-size: 2em;
+    a {
+      color: $light;
+    }
+  }
 }
 h3 {
   margin-bottom: 6px;
@@ -87,22 +101,13 @@ a {
 }
 main {
   h1, h2, h3, h4, h5, h6 {
-    font-weight: 400;
+    font-weight: 600;
   }
 }
-.btn {
-  background: linear-gradient(90deg, $primary, $secondary);
-  @include transition(400ms);
-  color: #fff;
-  &:hover {
-    color: $light;
-    background: linear-gradient(90deg, darken($primary, 10%), darken($secondary, 10%));
-    @include transition(100ms);
-  }
-}
+
 .card {
   border: none;
-  border-top: 10px solid $primary;
+  border-top: 10px solid $danger;
   -webkit-box-shadow: 0 0 10px 0 rgba(1,1,1,.2);
   box-shadow: 0 0 10px 0 rgba(1,1,1,.2);
   .card-footer {
@@ -114,10 +119,19 @@ main {
     }
   }
 }
+
+#language select {
+  display: none;
+}
+
 //Navigation Styles
+.header-alert {
+  background: #B7CCDC;
+  span.toggle {
+    color: $light;
+  }
+}
 header.top-header {
-  position: fixed;
-  top: 0;
   opacity: 1;
   left: 0;
   right: 0;
@@ -125,7 +139,7 @@ header.top-header {
   opacity: 1;
   @include transition(500ms);
   .logo {
-    max-width: 255px;
+    max-width: 275px;
     a {
       img, svg {
         max-width: 100%;
@@ -134,18 +148,6 @@ header.top-header {
     @include transition(500ms);
     .hide {
       @include transition(500ms);
-    }
-
-  }
-  &.scrolled {
-    background: linear-gradient(90deg, $primary, $secondary);
-    .logo {
-      max-width: 175px;
-      @include transition(500ms);
-      .hide {
-        opacity: 0;
-        @include transition(500ms);
-      }
     }
 
   }
@@ -166,11 +168,13 @@ header.top-header {
         padding: 0;
         position: relative;
         a {
-          color: $light;
+          color: $primary;
           padding: 5px 10px;
           display: block;
           text-decoration: none;
           border-bottom: 3px solid transparent;
+          text-transform: uppercase;
+          font-weight: 700;
           @include transition(500ms);
         }
         &.current_page_item, &:hover {
@@ -250,7 +254,7 @@ header.top-header {
   height: 0;
   overflow: hidden;
   z-index: 19999;
-  background: $primary;
+  background: $light;
   @include transition(100ms);
   &.show {
     height: 100vh;
@@ -270,17 +274,22 @@ header.top-header {
     width: 90%;
     margin: 0 auto;
     list-style: none;
+    text-align: center;
     li {
+      text-align: center;
       display: block;
       width: 100%;
-      margin: 1px 0;
+      margin: 3px 0;
       @include transition(100ms);
       a {
         padding: 8px 16px;
         display: block;
         width: 100%;
-        color: $light;
+        color: $primary;
         text-decoration: none;
+        text-transform: uppercase;
+        font-weight: bold;
+        font-size: 1.2em;
         @include transition(200ms);
         &:hover {
           color: $light;
@@ -390,21 +399,81 @@ header.blog-header {
   background-position: center;
   background-blend-mode: luminosity;
 }
-
-article.team {
-  .team-thumbnail {
-    img {
-      border: 5px solid $primary;
+article.page.type-page, article.post.type-post.single {
+  border-top: 20px solid $danger;
+  margin-top: 15px;
+}
+article.post.type-post {
+  .blog-button {
+    color: $danger;
+    margin: 10px 0;
+    text-transform: uppercase;
+    font-weight: bold;
+  }
+  .card-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 30px;
+    line-height: 22px;
+    background-position: right bottom;
+    background-repeat: no-repeat;
+    background-size: 200px;
+    background-image: url('../img/element.png');
+    position: relative;
+    &:after {
+      content: ' ';
+      position: absolute;
+      height: 100%;
+      top: 0;
+      bottom: 0;
+      right: 0;
+      width: 40px;
+      border-right: 30px solid $danger;
+      background: $light;
     }
   }
-  .icons {
-    display: flex;
-    justify-content: flex-start;
-    a {
-      text-decoration: none;
-      display: block;
-      padding: 5px;
+}
+section.brand, section.archive-header {
+  background-size: cover;
+  position: relative;
+  color: $light;
+  .headline {
+    text-align: center;
+    text-transform: uppercase;
+    margin-top: 140px;
+    margin-bottom: 140px;
+    background: $warning;
+    padding: 20px;
+    margin: 0 auto;
+    h1.headline {
+
     }
+  }
+}
+section.blog, section.post {
+  article {
+    span.posted-date {
+      font-size: .8em;
+      margin: 4px 0;
+    }
+    span.author-name {
+      font-size: .8em;
+      margin: 4px 0;
+      display: block;
+    }
+    &.sticky {
+      .card-body {
+        border-top: 8px solid $secondary;
+      }
+
+    }
+    .categories {
+      line-height: 1.1em;
+    }
+  }
+  a.view-article {
+    display: none;
   }
 }
 
@@ -464,18 +533,13 @@ section.archive-team {
     }
   }
 }
-#comments {
-  ul {
-    list-style: none;
-    margin: 0;
-    padding: 0;
-    
-  }
-}
+
+
 // Footer
 footer.footer {
   color: #fff;
   padding-top: 40px;
+  background-image: url('../img/footer_BG.jpg');
   a {
     color: $light;
     text-decoration: none;
@@ -485,7 +549,7 @@ footer.footer {
     }
   }
   .copyright {
-    font-size: .8em;
+    text-transform: uppercase;
   }
   ul {
     width: 100%;
@@ -495,13 +559,19 @@ footer.footer {
     list-style: none;
     line-height: 1.1em;
     li {
-      margin: 0 0 0 10px;
-      padding: 0;
+      margin: 5px;
+      padding: 10px;
       display: block;
+
       a {
         display: block;
         text-decoration: none;
         border-bottom: 3px solid transparent;
+        font-size: 1.1em;
+        text-transform: uppercase;
+        padding: 2px;
+        font-weight: 800;
+        letter-spacing: 3px;
         @include transition(500ms);
         &:hover {
           border-bottom: 3px solid $light;
@@ -551,42 +621,6 @@ p.wp-caption-text {
   text-align: center;
   font-size: .9em;
   margin: 0 0 15px 0;
-}
-
-section.brand, section.archive-header {
-  background-size: cover;
-  position: relative;
-  padding-top: 150px;
-  margin-bottom: 30px;
-  color: $light;
-  &.archive-header {
-    background: linear-gradient(90deg, $primary, $secondary);
-  }
-}
-section.blog, section.post {
-  article {
-    span.posted-date {
-      font-size: .8em;
-      margin: 4px 0;
-    }
-    span.author-name {
-      font-size: .8em;
-      margin: 4px 0;
-      display: block;
-    }
-    &.sticky {
-      .card-body {
-        border-top: 8px solid $secondary;
-      }
-
-    }
-    .categories {
-      line-height: 1.1em;
-    }
-  }
-  a.view-article {
-    display: none;
-  }
 }
 
 /* sidebars and asides */
@@ -640,8 +674,8 @@ code {
 // Pagination
 .pagination {
   display: flex;
-  align-items: center;
-  justify-content: center;
+  align-items: flex-end;
+  justify-content: flex-end;
   margin: 20px 0;
   .page-numbers {
     background: $primary;
@@ -649,7 +683,6 @@ code {
     margin: 0 2px;
     color: #fff;
     text-align: center;
-    flex: 1;
     font-size: 1.4em;
     font-weight: 500;
     min-width: 30px;

@@ -30,36 +30,31 @@ function mind_format_phone($phoneNumber) {
 
 add_filter( 'render_block', 'mapi_block_wrapper', 10, 2 );
 function mapi_block_wrapper( $block_content, $block ) {
-  $noWrapper = array(
+  $addWrapper = array(
     'core/cover',
-    // 'core/button',
-    'acf/leep-full-width-notice',
-    'acf/container'
+    // // 'core/button',
+    // 'acf/leep-full-width-notice',
+    // 'acf/container'
   );
-  if(!in_array($block['blockName'], $noWrapper)) :
-    $content = '<div class="container">';
-      $content .= '<div class="row">';
-        $content .= '<div class="col-12">';
-          $content .= $block_content;
-        $content .= '</div>';
+  mapi_write_log($block['blockName']);
+  if(in_array($block['blockName'], $addWrapper)) :
       $content .= '</div>';
     $content .= '</div>';
+  $content .= '</div>';
+    $content .= $block_content;
+  $content = '<div class="container">';
+    $content .= '<div class="row">';
+      $content .= '<div class="col-12">';
+
+
   else :
     return $block_content;
   endif;
   return $content;
 
-
-
-
 }
 
 
-add_action( 'pre_get_posts', function ($query) {
-    if ( !is_admin() && $query->is_main_query() && is_post_type_archive( 'team' ) ) {
-      $query->set( 'posts_per_page', -1 );
-    }
-});
 
 /**
  * Gutenberg scripts and styles
@@ -84,6 +79,29 @@ add_action( 'enqueue_block_editor_assets', 'be_gutenberg_scripts' );
  *
  * @return string Modified field content
  */
+
+ // 
+ // /*======================================================================
+ // 	Gravity form custom button
+ // ----------------------------------------------------------------------*/
+ // add_filter("gform_submit_button_1", "form_submit_button", 10, 2);
+ // function form_submit_button($button, $form){
+ // return "<button id='gform_submit_button_1'><div class='text'>{$form["button"]["text"]}</div> <i class='arrow fa fa-angle-double-right'></i></button>";
+ // }
+ //
+ //
+ // /*======================================================================
+ // 	Gravity form custom button
+ // ----------------------------------------------------------------------*/
+ // add_filter("gform_submit_button_2", "form_submit_button2", 10, 2);
+ // function form_submit_button2($button, $form){
+ // return "<button id='gform_submit_button_2'><div class='text'>{$form["button"]["text"]}</div> <i class='arrow fa fa-angle-double-right'></i></button>";
+ // }
+ //
+
+
+
+
 add_filter("gform_field_content", "bootstrap_styles_for_gravityforms_fields", 10, 5);
 function bootstrap_styles_for_gravityforms_fields($content, $field, $value, $lead_id, $form_id){
 

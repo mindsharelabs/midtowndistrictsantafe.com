@@ -26,7 +26,7 @@ if (!isset($content_width)) {
 }
 
 if (function_exists('add_theme_support')) {
-    add_image_size( 'loop-thumb', 350, 150, true);
+    add_image_size( 'loop-thumb', 350, 350, true);
 
     // Add Thumbnail Theme Support
     add_theme_support('post-thumbnails');
@@ -128,14 +128,16 @@ function mindblank_header_scripts()
 {
     if ($GLOBALS['pagenow'] != 'wp-login.php' && !is_admin()) {
 
-      wp_register_script('mindblankscripts-min', get_template_directory_uri() . '/js/scripts.js', array('bootstrap', 'slick-slider'), THEME_VERSION, true);
-      wp_enqueue_script('mindblankscripts-min');
+
 
       wp_register_script('bootstrap', get_template_directory_uri() . '/js/bootstrap.bundle.min.js', array('jquery'), '4.4.1');
       wp_enqueue_script('bootstrap');
 
-      wp_register_script('slick-slider', get_template_directory_uri() . '/js/slick.min.js', array(), THEME_VERSION);
-      wp_enqueue_script('slick-slider');
+      wp_register_script('jquery-cookie', get_template_directory_uri() . '/js/jquery.cookie.js', array(), THEME_VERSION);
+      wp_enqueue_script('jquery-cookie');
+
+      wp_register_script('mindblankscripts-min', get_template_directory_uri() . '/js/scripts.js', array('bootstrap', 'jquery-cookie'), THEME_VERSION, true);
+      wp_enqueue_script('mindblankscripts-min');
 
 
       wp_register_script('fontawesome', 'https://kit.fontawesome.com/2376b7dee0.js', array(), THEME_VERSION, true);
@@ -230,18 +232,19 @@ function mindblank_styles()
     wp_register_style('mindblankcssmin', get_template_directory_uri() . '/css/style.css', array(), THEME_VERSION);
     wp_enqueue_style('mindblankcssmin');
 
-    wp_register_style('typekit-fonts', 'https://use.typekit.net/iax7txx.css', array(), THEME_VERSION);
+    wp_register_style('google-fonts', 'https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,400;0,700;1,400;1,700&family=Oswald&display=swap', array(), THEME_VERSION);
 		add_action('wp_head', function() {
-			echo '<link rel="preload" href="https://use.typekit.net/">';
+			echo '<link rel="preconnect" href="https://fonts.gstatic.com">';
 		});
-
-
 }
-
 function mind_add_footer_styles() {
-		wp_enqueue_style('typekit-fonts');
+		wp_enqueue_style('google-fonts');
 };
 add_action( 'get_footer', 'mind_add_footer_styles' );
+
+
+
+
 
 
 // Register mind Blank Navigation
@@ -474,12 +477,51 @@ remove_action( 'wp_print_styles', 'print_emoji_styles' );
 // Remove Filters
 remove_filter('the_excerpt', 'wpautop'); // Remove <p> tags from Excerpt altogether
 
-// Shortcodes
-add_shortcode('mind_shortcode_demo', 'mind_shortcode_demo'); // You can place [mind_shortcode_demo] in Pages, Posts now.
-add_shortcode('mind_shortcode_demo_2', 'mind_shortcode_demo_2'); // Place [mind_shortcode_demo_2] in Pages, Posts now.
 
-// Shortcodes above would be nested like this -
-// [mind_shortcode_demo] [mind_shortcode_demo_2] Here's the page title! [/mind_shortcode_demo_2] [/mind_shortcode_demo]
+
+/*======================================================================
+	Wordpress wp_head Cleaner
+----------------------------------------------------------------------*/
+remove_action('wp_head', 'wp_generator'); 						/* WordPress generator meta tag */
+remove_action('wp_head', 'rsd_link');							/* Really Simple Discovery */
+remove_action('wp_head', 'wlwmanifest_link');					/* Windows Live Writer */
+remove_action('wp_head', 'start_post_rel_link');				/* Post Relational Links - Start */
+remove_action('wp_head', 'index_rel_link');						/* Post Relational Links - Index */
+remove_action('wp_head', 'adjacent_posts_rel_link_wp_head');	/* Post Relational Links - Previous and Next */
+remove_action('wp_head', 'wp_shortlink_wp_head');				/* Post shortlinks */
+remove_action('wp_head', 'rel_canonical');						/* Canonical links */
+remove_action('wp_head', 'feed_links');							/* Post and Comment Feed */
+remove_action('wp_head', 'feed_links_extra');					/* Other feeds, for example category feeds */
+remove_action('wp_head', 'print_emoji_detection_script');		/* Emoji scripts */
+remove_action('wp_head', 'rest_output_link_wp_head');			/* REST API */
+remove_action('wp_head', 'wp_oembed_add_discovery_links');		/* oEmbed tags */
+remove_action('wp_head', 'wp_oembed_add_host_js');				/* oEmbed scripts */
+remove_action('wp_head', 'wp_resource_hints');					/* Resource hints */
+
+/*======================================================================
+	Remove Wordpress Emoji Support (Front-End)
+----------------------------------------------------------------------*/
+function mind_remove_emoji(){
+	remove_action('wp_head', 'print_emoji_detection_script', 7);
+	remove_action('admin_print_scripts', 'print_emoji_detection_script');
+	remove_action('admin_print_styles', 'print_emoji_styles');
+	remove_action('wp_print_styles', 'print_emoji_styles');
+	remove_filter('the_content_feed', 'wp_staticize_emoji');
+	remove_filter('comment_text_rss', 'wp_staticize_emoji');
+	remove_filter('wp_mail', 'wp_staticize_emoji_for_email');
+	add_filter('tiny_mce_plugins', 'mind_remove_tinymce_emoji');
+}
+add_action('init', 'mind_remove_emoji');
+
+/*======================================================================
+	Remove Wordpress Emoji Support (Back-End)
+----------------------------------------------------------------------*/
+function mind_remove_tinymce_emoji($plugins){
+	if(!is_array($plugins)){
+		return array();
+	}
+	return array_diff($plugins, array('wpemoji'));
+}
 
 //SVG UPLOADS
 add_filter( 'upload_mimes', 'mindblank_mime_types' );

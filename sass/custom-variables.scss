@@ -60,12 +60,12 @@ $colors: (
 );
 // scss-docs-end colors-map
 
-$primary:       rgb(214, 212, 172);
-$secondary:     rgb(138, 141, 127);
+$primary:       #0f3051;
+$secondary:     #eb3e38;
 $success:       $green;
-$info:          $cyan;
-$warning:       $yellow;
-$danger:        $red;
+$info:          #B7CCDC;
+$warning:       #f89821;
+$danger:        #eb3e38;
 $light:         $gray-100;
 $dark:          #2B2B2B;
 
@@ -98,7 +98,7 @@ $color-contrast-light:     $white;
 $enable-caret:                false;
 $enable-rounded:              false;
 $enable-shadows:              true;
-$enable-gradients:            true;
+$enable-gradients:            false;
 $enable-transitions:          true;
 $enable-reduced-motion:       true;
 $enable-smooth-scroll:        true;
@@ -155,6 +155,7 @@ $box-shadow-inset:            inset 0 1px 2px rgba($black, .075);
 
 // stylelint-disable value-keyword-case
 $font-family-sans-serif:      ronnia, sans-serif;
+$font-family-serif:      ronnia, sans-serif;
 $font-family-monospace:       SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
 // stylelint-enable value-keyword-case
 

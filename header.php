@@ -31,12 +31,12 @@
     echo '<div class="mobileHeader">';
       echo '<nav id="mobileMenu" class="mobile-nav">';
 
-        echo '<div class="mobile-logo my-4 mx-auto w-50">';
-          echo '<a href="' . home_url() . '">';
-            echo '<img src="' . get_template_directory_uri() . '/img/mindshare.svg" alt="' . get_bloginfo( "name" ) . '" class="logo-img">';
-          echo '</a>';
-        echo '</div>';
+
         mindblank_nav('mobile-menu');
+
+        echo '<div class="mobile-logo my-4 mx-auto w-25">';
+          echo '<a href="https://www.santafenm.gov/" target="_blank"><img src="' . get_bloginfo('template_directory') . '/img/seal.png" id="seal_logo"></a>';
+        echo '</div>';
       echo '</nav>';
 
       echo '<nav id="mobileMenuToggle" class="menu-toggle">';

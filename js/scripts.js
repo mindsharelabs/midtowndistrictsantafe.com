@@ -15,14 +15,36 @@
 					var menuWidth = 400;
 				}
 
-				$(window).scroll(function() {
-	        if ($(document).scrollTop() > 10) {
-	          $('header.header').addClass('scrolled');
-	        }
-	        else {
-	          $('header.header').removeClass('scrolled');
-	        }
-		    });
+
+				var lang = $.cookie("googtrans"); //console.log(lang);
+				if(lang == '/en/en' || lang == "" || lang == undefined) {
+					$("#language select").val('en|en');
+					$("#language span").text('Español');
+					doGTranslate('en|en');
+				}
+				if(lang == '/en/es' || lang == '/en/af') {
+					$("#language select").val('en|es');
+					$("#language span").text('English');
+					doGTranslate('en|es');
+				}
+
+
+				$("#language span").click(function(){
+					var lang = $.cookie("googtrans");
+					if(lang == '/en/en' || lang == "" || lang == undefined || lang == 'undefined') {
+						$("#language select").val('en|es');
+						$("#language span").text('English');
+						doGTranslate('en|es');
+					}
+					if(lang == '/en/es') {
+						$("#language select").val('en|en');
+						$("#language span").text('Español');
+						doGTranslate('en|en');
+					}
+				});
+
+
+
 
 				$(document).on('click', '#mobileMenuToggle', function() {
 					$('#mobileMenu').css('height', '100vh');
