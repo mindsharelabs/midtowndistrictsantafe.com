@@ -2,10 +2,11 @@
 $archived = get_field('archive_post');
 
 ?>
-<article id="post-<?php the_ID(); ?>" <?php post_class('row mb-3 ' . ($archived ? 'archived' : '')); ?>>
+<article id="post-<?php the_ID(); ?>" <?php post_class('mb-3 ' . ($archived ? 'archived' : '')); ?>>
+  <div class="row px-3">
     <?php
     if(has_post_thumbnail( )) :
-      echo '<div class="col-4">';
+      echo '<div class="col-4 d-none d-md-block">';
       $args = array();
         if($archived) :
           $args['class'] = 'blackandwhite';
@@ -14,7 +15,7 @@ $archived = get_field('archive_post');
       echo '</div>';
     endif;
     ?>
-    <div class="col-8 card-content">
+    <div class="col card-content">
       <span class="posted-date mb-2">
         <small class="text-muted ">
           <time datetime="<?php echo get_the_date(); ?>"><?php echo get_the_date(); ?></time>
@@ -26,5 +27,7 @@ $archived = get_field('archive_post');
       </h2>
       <a href="<?php the_permalink(); ?>" class="blog-button">Read More <i class="fas fa-angle-double-right"></i></a>
     </div>
+
     <div class="red-stripe"></div>
+  </div>
 </article>

@@ -584,6 +584,13 @@ section.archive-team {
 
 
 // Footer
+.stay-connected {
+  background-size: 350px;
+  background-position: top -25px right -25px;
+  background-repeat: no-repeat;
+  transition: all 0.25s ease;
+  background-image: url('../img/element_white.png'); 
+}
 footer.footer {
   color: #fff;
   padding-top: 40px;

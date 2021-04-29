@@ -8,7 +8,7 @@ get_header();
   echo '<section class="container blog">';
     echo '<div class="row pt-5">';
       if(have_posts()) :
-        echo '<div class="col-12 col-md-3 page-title">';
+        echo '<div class="col-12 col-md-3 page-title mb-4 mb-md-0">';
           echo '<h1 class="page-title">' . get_the_title(get_option('page_for_posts', true)) . '</h1>';
           echo '<div class="cat-list">';
             wp_list_categories(array(

@@ -115,7 +115,7 @@ function mind_login_logo_url($url) {
 add_filter( 'login_headerurl', 'mind_login_logo_url' );
 
 
-
+ 
 
 /*  Add responsive container to embeds
 /* ------------------------------------ */

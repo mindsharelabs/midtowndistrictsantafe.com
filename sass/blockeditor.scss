@@ -139,6 +139,7 @@ blockquote {
   height: 800px !important;
 }
 .wp-block-columns {
+  overflow-x: hidden;
   .wp-block-column {
     .container {
       padding-left: 0!important;

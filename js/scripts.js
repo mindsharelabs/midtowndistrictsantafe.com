@@ -3,6 +3,18 @@
 
 	$(function () {
 
+			// var docWidth = document.documentElement.offsetWidth;
+			//
+			// [].forEach.call(
+			//   document.querySelectorAll('*'),
+			//   function(el) {
+			//     if (el.offsetWidth > docWidth) {
+			//       console.log(el);
+			//     }
+			//   }
+			// );
+
+
         var windowWidth = $(window).width();
 
 				if(windowWidth < 576) {
@@ -71,9 +83,9 @@
 
 
 
-				gform.addFilter( 'gform_spinner_target_elem', function( $targetElem, formId ) {
-				    return $( '#my-custom-footer-elem' );
-				} );
+				// gform.addFilter( 'gform_spinner_target_elem', function( $targetElem, formId ) {
+				//     return $( '#my-custom-footer-elem' );
+				// } );
 
         jQuery('body').addClass('fade-in');
 
